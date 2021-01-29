@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio4</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        var cont=3;
+        //BD
+    var peliculas=[{
+          "id":"1",
+          "nombre":"haikyuu",
+          "directores":"mappa",
+          "companiaProductora":"MusicRecord",
+          "Genero":"miedo",
+          "estrenoYear":"2020",
+          "visualizada":"si",
+          "Calificacion":5
+      },{
+          "id":"2",
+          "nombre":"One Pice",
+          "directores":'juan',
+          "companiaProductora":"tokyotv",
+          "Genero":"Emocion",
+          "estrenoYear":"1999",
+          "visualizada":"si",
+          "Calificacion":1
+      },{
+          "id":"3",
+          "nombre":"haikyuu 3",
+          "directores":"alberto gonazalies",
+          "companiaProductora":"Music",
+          "Genero":"miedo",
+          "estrenoYear":"2020",
+          "visualizada":"si",
+          "Calificacion":5
+      }];
+      var pelicula = {
+          "id":"",
+          "nombre":"",
+          "directores":[],
+          "companiaProductora":"",
+          "Genero":"",
+          "estrenoYear":"",
+          "visualizada":"no",
+          "Calificacion":""
+      }
+    function getMovies(){
+          let htmlmovie = document.getElementById('peliculasCard');
+          peliculas.forEach((peli)=>{
+            htmlmovie.innerHTML += `<div class="col-6">
+            <ul>
+                <p class="mb-0">Pelicula #${peli.id}</p>
+                <li>${peli.nombre}</li>
+                <li>${peli.directores}</li>
+                <li>${peli.companiaProductora}</li>
+                <li>${peli.Genero}</li>
+                <li>${peli.estrenoYear}</li>
+                <li>${peli.directores}</li>
+            </ul>
+            </div>`;
+          })
+         
+          /* console.log(htmlmovie); */
+          console.log(peliculas);
+      }
+
+    function createMovie(){
+        let pelicula = {
+          "id":"",
+          "nombre":"",
+          "directores":[],
+          "companiaProductora":"",
+          "genero":"",
+          "estrenoYear":"",
+          "visualizada":"",
+          "Calificacion":""
+      }
+         pelicula.id=cont+1;
+        pelicula.nombre=document.getElementById('peliculaNew').value;
+         pelicula.directores=document.getElementById('directorNew').value;
+         pelicula.companiaProductora=document.getElementById('companiaProdNew').value;
+         pelicula.genero=document.getElementById('generoNew').value;
+         pelicula.estrenoYear=document.getElementById('añoNew').value;
+        pelicula.visualizada=document.getElementById('visualizadaNew').value;
+        pelicula.Calificacion=document.getElementById('calificacionNew').value;
+
+        console.log(pelicula);
+        peliculas.push(pelicula);
+        
+    }
+    function findMovie(){
+        let result = {};
+        let id= document.getElementById('idFind').value;
+        let compania = document.getElementById('companiaFind').value;
+        let calificacion = document.getElementById('calificacionFind').value;
+        let visto = document.getElementById('vistoFind').value;
+        if(id !==""){
+            result = peliculas.find(peli => peli.id == id);
+            mostrar(result);
+        }else if(compania !==""){
+            result = peliculas.find(peli => peli.companiaProductora == compania);
+            mostrar(result);
+        }else if(calificacion !==""){
+            result = peliculas.find(peli => peli.Calificacion == calificacion);
+            mostrar(result);
+        }else if(visto){
+            result = peliculas.find(peli => peli.visualizada == visto);
+            mostrar(result);
+        }
+    }
+    //metodo auxiliar para mostrar las busquedas
+    function mostrar(objeto){
+        let html = document.getElementById('resultadosFind');
+        html.innerHTML += `<div class="col-6">
+            <ul>
+                <p class="mb-0">Pelicula #${objeto.id}</p>
+                <li>${objeto.nombre}</li>
+                <li>${objeto.directores}</li>
+                <li>${objeto.companiaProductora}</li>
+                <li>${objeto.Genero}</li>
+                <li>${objeto.estrenoYear}</li>
+                <li>${objeto.directores}</li>
+            </ul>
+            </div>`
+    }
+    function deleteMovie(){
+
+    }
+    </script>
+    <section>
+        <div class="container">
+            <h1>Insertar peliculas</h1>
+            <form action="">
+                <div class="form-group">
+                   <input type="text" class="form-control" placeholder="Nombre Pelicula" id="peliculaNew">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Director" id="directorNew">
+                    <label>Si son varios directores, favor de ingresarlo con una coma.</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="companiaProductora" id="companiaProdNew">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Genero" id="generoNew">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="año estreno" id="añoNew">
+                </div>
+                <div class="form-group">
+                    <label for="">porfavor escriba si o no en minúsculas</label>
+                    <input type="text" class="form-control" placeholder="visualizada?" id="visualizadaNew">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Calificacion" id="calificacionNew" min="1" max="5">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="createMovie()">Insertar pelicula</button>
+            </form>
+        </div>
+    </section>
+    <!-- Listar una pelicula -->
+    <section>
+        <hr>
+        <div class="container">
+            <h1>Listado de peliculas</h1>
+            <button type="button" onclick="getMovies()" class="btn btn-primary">Listar peliculas</button>
+            <div id="peliculasCard" class="my-4 row">
+            </div>
+        </div>
+    </section>
+    <!-- Buscar una pelicula -->
+    <section>
+        <hr>
+        <div class="container">
+        <h1>Buscar peliculas</h1>
+            <form action="">
+                <p>Nota: La busqueda solo se puede realizar uno al mismo tiempo</p>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="id pelicula" id="idFind">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="compania" id="companiaFind">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="calificacion" id="calificacionFind">
+                </div>
+                <div class="form-group">
+                    <label for="">escriba si o no en minusculas</label>
+                    <input type="text" class="form-control" placeholder="visto" id="vistoFind">
+                </div>
+                <button type="button" onclick="findMovie()" class="btn btn-success">buscar pelicula</button>
+            </form>
+            <div>
+                <div class="container my-4">
+                    <h3>Resultados busqueda</h3>
+                    <div id="resultadosFind" class="row py-4">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <h1>Eliminar una pelicula</h1>
+            <form action="">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="ingrese el nombre" id="nombreDelete">
+                </div>
+                <button type="button" onclick="deleteMovie()">=
+                    Eliminar
+                </button>
+            </form>
+        </div>
+    </section>
+  </body>
+</html>
