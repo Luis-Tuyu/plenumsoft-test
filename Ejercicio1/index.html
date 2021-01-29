@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 1</title>
+  </head>
+  <body>
+    <script>
+      function getNumero() {
+        /* let num = document.getElementById('x').value; */
+        let input = document.getElementById('x').value;
+        let num = parseInt(input);
+        let invertido = "";
+        let arreglo = [];
+        if (num >= -231 && num <= 231) {
+          num = String(num);
+          if (num < 0) {
+            //concatena los numeros negativos
+            invertido += "-";
+            for (let i = 1; i < num.length; i++) {
+              arreglo.push(num.charAt(i));
+            }
+          } else {
+            //concatena los numeros positivos
+            for (let i = 0; i < num.length; i++) {
+              arreglo.push(num.charAt(i));
+            }
+          }
+        } else {
+          console.log("No entro al invertido");
+          invertido = 0;
+        }
+
+        //invertir arreglo
+        const reverse = arreglo.reverse();
+        reverse.forEach((item) => {
+          invertido += item;
+        });
+        console.log(invertido);
+      }
+    </script>
+    <form>
+      <p>Ingresa un numero</p>
+      <input type="number" id="x" />
+      <button onclick="getNumero()" type="button">Invertir</button>
+    </form>
+  </body>
+</html>
