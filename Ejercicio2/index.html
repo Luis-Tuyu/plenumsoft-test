@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio2</title>
+  </head>
+  <body>
+    <script>
+      function getPalin() {
+        let input = document.getElementById('x').value;
+        let arr = [];
+        let inputInv = "";
+        //eliminar el numero aux
+        for (let i = 0; i < input.length; i++) {
+          arr.push(input.charAt(i));
+        }
+        arr = arr.reverse();
+        arr.forEach((item) => {
+          inputInv += item;
+        });
+
+        console.log(input + "--" + inputInv);
+        if (input == inputInv) {
+          console.log(true);
+          alert(true)
+        } else {
+            alert(false);
+          console.log(false);
+        }
+      }
+    </script>
+    <form>
+      <p>Ingresa un numero</p>
+      <input type="number" id="x" />
+      <button onclick="getPalin()" type="button">Invertir</button>
+    </form>
+  </body>
+</html>
