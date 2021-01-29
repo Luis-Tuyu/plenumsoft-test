@@ -13,7 +13,7 @@
         let num = parseInt(input);
         let invertido = "";
         let arreglo = [];
-        if (num >= -231 && num <= 231) {
+        if (num >= -2147483647 && num <= 2147483647) {
           num = String(num);
           if (num < 0) {
             //concatena los numeros negativos
@@ -37,7 +37,7 @@
         reverse.forEach((item) => {
           invertido += item;
         });
-        console.log(invertido);
+        alert(invertido);
       }
     </script>
     <form>
